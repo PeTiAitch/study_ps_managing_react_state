@@ -8,8 +8,12 @@ import Header from "./Header";
 export default function App() {
   const [size, setSize] = useState("");
   const [products, setProducts] = useState([]);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
-    getProducts("shoes").then((result) => setProducts(result));
+    getProducts("shoes")
+      .then((result) => setProducts(result))
+      .catch((e) => setError(e));
   }, []);
 
   function renderProduct(p) {
@@ -23,6 +27,8 @@ export default function App() {
       </div>
     );
   }
+
+  if (error) throw error;
 
   const filteredProducts = size
     ? products.filter((p) => p.skus.find((s) => s.size === parseInt(size)))
