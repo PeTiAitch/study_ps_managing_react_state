@@ -13,12 +13,17 @@ export default function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getProducts("shoes")
-      .then((result) => setProducts(result))
-      .catch((e) => setError(e))
-      .finally(() => {
+    const init = async () => {
+      try {
+        const response = await getProducts("shoes");
+        setProducts(response);
+      } catch (e) {
+        setError(e);
+      } finally {
         setLoading(false);
-      });
+      }
+    };
+    init();
   }, []);
 
   function renderProduct(p) {
