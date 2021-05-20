@@ -7,6 +7,7 @@ import PageNotFound from "./PageNotFound";
 
 export default function Products() {
   const { category } = useParams();
+
   const [size, setSize] = useState("");
   const {
     data: products,
