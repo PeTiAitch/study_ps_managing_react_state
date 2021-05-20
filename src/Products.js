@@ -3,6 +3,7 @@ import useFetch from "./services/useFetch";
 import { useParams } from "react-router-dom";
 
 import Spinner from "./Spinner";
+import PageNotFound from "./PageNotFound";
 
 export default function Products() {
   const { category } = useParams();
@@ -28,6 +29,8 @@ export default function Products() {
   if (error) throw error;
 
   if (loading) return <Spinner />;
+
+  if (products.length === 0) return <PageNotFound />;
 
   const filteredProducts = size
     ? products.filter((p) => p.skus.find((s) => s.size === parseInt(size)))
