@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
@@ -9,6 +9,14 @@ import Detail from "./Detail";
 import Cart from "./Cart";
 
 export default function App() {
+  const [cart, setCart] = useState([]);
+
+  const addToCart = (id, sku) => {
+    setCart((items) => {
+      const itemInCart = items.find((item) => item.sku === sku);
+    });
+  };
+
   return (
     <>
       <div className="content">
