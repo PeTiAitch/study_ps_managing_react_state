@@ -11,22 +11,20 @@ import Cart from "./Cart";
 export default function App() {
   const [cart, setCart] = useState([]);
 
-  const addToCart = (id, sku) => {
+  function addToCart(id, sku) {
     setCart((items) => {
       const itemInCart = items.find((i) => i.sku === sku);
       if (itemInCart) {
-        return items.map((i) => {
-          if (i.sku === sku) {
-            return { ...i, quantity: i.quantity + 1 };
-          }
-
-          return i;
-        });
+        // Return new array with the matching item replaced
+        return items.map((i) =>
+          i.sku === sku ? { ...i, quantity: i.quantity + 1 } : i
+        );
+      } else {
+        // Return new array with the new item appended
+        return [...items, { id, sku, quantity: 1 }];
       }
-
-      return [...items, { id, sku, quantity: 1 }];
     });
-  };
+  }
 
   return (
     <>
