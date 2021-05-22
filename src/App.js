@@ -26,6 +26,12 @@ export default function App() {
     });
   }
 
+  function updateQuantity(sku, quantity) {
+    setCart((items) => {
+      return items.map((i) => (i.sku === sku ? { ...i, quantity } : i));
+    });
+  }
+
   return (
     <>
       <div className="content">
@@ -41,7 +47,10 @@ export default function App() {
               path="/:category/:id"
               element={<Detail addToCart={addToCart} />}
             />
-            <Route path="/cart" element={<Cart />} />
+            <Route
+              path="/cart"
+              element={<Cart cart={cart} updateQuantity={updateQuantity} />}
+            />
           </Routes>
         </main>
       </div>
