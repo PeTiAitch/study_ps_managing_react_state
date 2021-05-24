@@ -69,6 +69,16 @@
       "city": "",
       "country": "",
       "id": 2
+    },
+    {
+      "city": ";l",
+      "country": "India",
+      "id": 3
+    },
+    {
+      "city": "Shumen",
+      "country": "China",
+      "id": 4
     }
   ]
 }
