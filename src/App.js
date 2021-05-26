@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import { Routes, Route } from "react-router-dom";
 import cartReducer from "./cartReducer";
 import { CartContext } from "./cartContext";
@@ -42,10 +42,7 @@ export default function App() {
               path="/:category/:id"
               element={<Detail dispatch={dispatch} />}
             />
-            <Route
-              path="/cart"
-              element={<Cart cart={cart} dispatch={dispatch} />}
-            />
+            <Route path="/cart" element={<Cart />} />
             <Route
               path="/checkout"
               element={<Checkout cart={cart} dispatch={dispatch} />}
