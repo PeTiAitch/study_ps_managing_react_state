@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useReducer } from "react";
 import { Routes, Route } from "react-router-dom";
 import cartReducer from "./cartReducer";
+import { CartContext } from "./cartContext";
 
 import "./App.css";
 import Footer from "./Footer";
@@ -27,7 +28,7 @@ export default function App() {
   }, [cart]);
 
   return (
-    <>
+    <CartContext.Provider value={{ cart, dispatch }}>
       <div className="content">
         <Header />
         <main>
@@ -53,6 +54,6 @@ export default function App() {
         </main>
       </div>
       <Footer />
-    </>
+    </CartContext.Provider>
   );
 }
