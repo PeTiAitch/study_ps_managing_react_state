@@ -30,40 +30,44 @@ export default class Checkout extends React.Component {
 
   handleChange(e) {
     e.persist();
-    setAddress((curAddress) => {
+    this.setState((state) => {
       return {
-        ...curAddress,
-        [e.target.id]: e.target.value,
+        address: {
+          ...state.address,
+          [e.target.id]: e.target.value,
+        },
       };
     });
   }
 
   handleBlur(event) {
     event.persist();
-    setTouched((cur) => {
+    this.setState((state) => {
       return {
-        ...cur,
-        [event.target.id]: true,
+        touched: {
+          ...state.touched,
+          [event.target.id]: true,
+        },
       };
     });
   }
 
-  async handleSubmit(event) {
+  handleSubmit = async (event) => {
     event.preventDefault();
-    setStatus(STATUS.SUBMITTING);
-    if (isValid) {
+    this.setState({ status: STATUS.SUBMITTING });
+
+    if (this.isValid()) {
       try {
-        await saveShippingAddress(address);
+        await saveShippingAddress(this.state.address);
         this.props.dispatch({ type: "empty" });
-        setStatus(STATUS.COMPLETED);
+        this.setState({ status: STATUS.COMPLETED });
       } catch (e) {
-        setSaveError(e);
-        setStatus(STATUS.SUBMITTED);
+        this.setState({ saveError: e });
       }
     } else {
-      setStatus(STATUS.SUBMITTED);
+      this.setState({ status: STATUS.SUBMITTED });
     }
-  }
+  };
 
   getErrors(address) {
     const result = {};
