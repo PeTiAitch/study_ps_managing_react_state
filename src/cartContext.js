@@ -31,5 +31,13 @@ export function CartProvider(props) {
 }
 
 export function useCart() {
-  return useContext(CartContext);
+  const context = useContext(CartContext);
+
+  if (!context) {
+    throw new Error(
+      "useCart must be used within a CartProvider. Wrap a parent component in <CartProvider> to fix this error."
+    );
+  }
+
+  return context;
 }
