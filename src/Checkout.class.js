@@ -16,11 +16,12 @@ const emptyAddress = {
 };
 
 export default class Checkout extends React.Component {
- 
-  const [address, setAddress] = useState(emptyAddress);
-  const [status, setStatus] = useState(STATUS.IDLE);
-  const [saveError, setSaveError] = useState(null);
-  const [touched, setTouched] = useState({});
+    state = {
+        address: emptyAddress,
+        status: STATUS.IDLE,
+        saveError: null,
+        touched: {}
+    }
 
   // Derived state
   const errors = getErrors(address);
