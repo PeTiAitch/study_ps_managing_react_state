@@ -27,7 +27,7 @@ export default class Checkout extends React.Component {
     return Object.keys(errors).length === 0;
   };
 
-  handleChange(e) {
+  handleChange = (e) => {
     e.persist();
     this.setState((state) => {
       return {
@@ -37,9 +37,9 @@ export default class Checkout extends React.Component {
         },
       };
     });
-  }
+  };
 
-  handleBlur(event) {
+  handleBlur = (event) => {
     event.persist();
     this.setState((state) => {
       return {
@@ -49,7 +49,7 @@ export default class Checkout extends React.Component {
         },
       };
     });
-  }
+  };
 
   handleSubmit = async (event) => {
     event.preventDefault();
