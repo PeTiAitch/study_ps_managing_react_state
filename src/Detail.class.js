@@ -21,9 +21,8 @@ class Detail extends React.Component {
     const { id, navigate, dispatch } = this.props;
 
     return (
-      <Fetch
-        url={`products/${id}`}
-        render={(product, loading, error) => {
+      <Fetch url={`products/${id}`}>
+        {(product, loading, error) => {
           if (loading) return <Spinner />;
           if (!product) return <PageNotFound />;
           if (error) throw error;
@@ -67,7 +66,7 @@ class Detail extends React.Component {
             </div>
           );
         }}
-      />
+      </Fetch>
     );
   }
 }
